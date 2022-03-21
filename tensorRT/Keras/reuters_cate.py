@@ -7,6 +7,7 @@ from tensorflow.keras import layers
 from tensorflow.keras import optimizers
 from tensorflow.keras import losses
 from tensorflow.keras import metrics
+from val_plot import val_plot
 
 
 # load data
@@ -44,31 +45,33 @@ model.compile(optimizer=optimizers.RMSprop(learning_rate=0.001),
 
 # train
 history = model.fit(x=train, y=train_labels,
-                    batch_size=32, epochs=20,
+                    batch_size=32, epochs=5,
                     validation_data=(train_val, train_labels_val))
-history_dict = history.history
-loss_value = history_dict['loss']
-val_loss_value = history_dict['val_loss']
-acc = history_dict['categorical_accuracy']
-val_acc = history_dict['val_categorical_accuracy']
+val_plot(history=history)
 
-
-# plot
-epochs = range(1, len(loss_value)+1)
-plt.subplot(2,1,1)
-plt.plot(epochs, loss_value, 'b')
-plt.plot(epochs, val_loss_value, 'r')
-plt.legend(['Training loss', 'Validation loss'])
-plt.title("Training and validation loss")
-plt.xlabel("Epochs")
-plt.ylabel("Loss")
-
-plt.subplot(2,1,2)
-plt.plot(epochs, acc, 'b')
-plt.plot(epochs, val_acc, 'r')
-plt.legend(['Training acc', 'Validation acc'])
-plt.title("Training and validation acc")
-plt.xlabel("Epochs")
-plt.ylabel("Accuracy")
-
-plt.show()
+# history_dict = history.history
+# loss_value = history_dict['loss']
+# val_loss_value = history_dict['val_loss']
+# acc = history_dict['categorical_accuracy']
+# val_acc = history_dict['val_categorical_accuracy']
+#
+#
+# # plot
+# epochs = range(1, len(loss_value)+1)
+# plt.subplot(2,1,1)
+# plt.plot(epochs, loss_value, 'b')
+# plt.plot(epochs, val_loss_value, 'r')
+# plt.legend(['Training loss', 'Validation loss'])
+# plt.title("Training and validation loss")
+# plt.xlabel("Epochs")
+# plt.ylabel("Loss")
+#
+# plt.subplot(2,1,2)
+# plt.plot(epochs, acc, 'b')
+# plt.plot(epochs, val_acc, 'r')
+# plt.legend(['Training acc', 'Validation acc'])
+# plt.title("Training and validation acc")
+# plt.xlabel("Epochs")
+# plt.ylabel("Accuracy")
+#
+# plt.show()
