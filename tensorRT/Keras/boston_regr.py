@@ -90,7 +90,8 @@ smooth_mae = smooth_curve(average_mae[10:])
 plt.subplot(2,1,2)
 plt.plot(range(1, len(smooth_mae) + 1), smooth_mae)
 plt.xlabel('Epochs')
+
 plt.ylabel('Validation MAE')
 plt.show()
 
-#  kill -9 `top -b -n1 | grep python > ~/log | cat | awk '{print $1}'`
+# kill -9 `top -b -n1 | grep python > ~/log | cat | awk '{print $1}'`
