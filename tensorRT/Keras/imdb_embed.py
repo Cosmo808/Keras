@@ -47,8 +47,8 @@ for label_type in ['neg', 'pos']:
 
 # tokenize
 max_len = 100
-training_samples = 200
-val_samples = 10000
+training_samples = 10000
+val_samples = 1000
 max_words = 10000
 
 tokenizer = Tokenizer(num_words=max_words)
@@ -96,4 +96,7 @@ x_test = pad_sequences(test_sequences, maxlen=max_len)
 y_test = np.asarray(test_labels)
 
 # evaluate
+print("Evaluating...")
 model.evaluate(x_test, y_test)
+
+# kill -9 `top -b -n1 | grep python > ~/log | cat | awk '{print $1}'`
